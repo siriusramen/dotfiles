@@ -42,6 +42,9 @@ vim.keymap.set('n', '<leader>tn', '<cmd>:set rnu!<CR>', { desc = 'Toggle relativ
 vim.keymap.set('n', '<TAB>', '<cmd>:bnext<CR>', { noremap = true })
 vim.keymap.set('n', '<BS>', '<cmd>:bprev<CR>', { noremap = true })
 
+vim.keymap.set('n', 'grd', '<cmd>lua vim.lsp.buf.definition()<CR>', {desc = 'Goto Definition' })
+vim.keymap.set('n', 'grD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {desc = 'Goto Declaration' })
+
 vim.keymap.set('n', '<leader>lf', function()
   require('conform').format { async = true, lsp_format = 'fallback' }
 end, { desc = 'Format buffer' })
