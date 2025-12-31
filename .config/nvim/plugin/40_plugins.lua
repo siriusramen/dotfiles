@@ -77,6 +77,7 @@ MiniDeps.now(function()
 end)
 
 MiniDeps.later(function()
+  add('everviolet/nvim')
   add('rebelot/kanagawa.nvim')
   add('ellisonleao/gruvbox.nvim')
   add('rose-pine/neovim')
