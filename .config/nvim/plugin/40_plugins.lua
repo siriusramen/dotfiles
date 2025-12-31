@@ -89,3 +89,7 @@ end)
 MiniDeps.now(function()
   add('pteroctopus/faster.nvim')
 end)
+
+MiniDeps.later(function()
+  add('christoomey/vim-tmux-navigator')
+end)
