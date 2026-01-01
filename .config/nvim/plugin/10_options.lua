@@ -51,4 +51,22 @@ vim.o.inccommand = 'split'
 
 vim.opt.updatetime = 50
 
+local diagnostic_opts = {
+  -- Show signs on top of any other sign, but only for warnings and errors
+  signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
+
+  -- Show all diagnostics as underline
+  underline = { severity = { min = 'HINT', max = 'ERROR' } },
+
+  -- Show more details immediately for errors on the current line
+  virtual_lines = false,
+  virtual_text = {
+    current_line = true,
+    severity = { min = 'ERROR', max = 'ERROR' },
+  },
+
+  -- Don't update diagnostics when typing
+  update_in_insert = false,
+}
+
 -- vim: ts=2 sts=2 sw=2 et
