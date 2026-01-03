@@ -1,3 +1,3 @@
 # NVIM
 
-Personal NeoVim config centered on [mini.nvim](https://github.com/echasnovski/mini.nvim) 
+Personal MINIMAL NeoVim config based on [MiniMax](https://github.com/nvim-mini/MiniMax)
