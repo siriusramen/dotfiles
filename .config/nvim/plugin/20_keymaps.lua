@@ -1,6 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -42,22 +39,22 @@ vim.keymap.set('n', '<leader>tn', '<cmd>:set rnu!<CR>', { desc = 'Toggle relativ
 vim.keymap.set('n', '<TAB>', '<cmd>:bnext<CR>', { noremap = true })
 vim.keymap.set('n', '<BS>', '<cmd>:bprev<CR>', { noremap = true })
 
-vim.keymap.set('n', '<leader>lf', function()
-  require('conform').format { async = true, lsp_format = 'fallback' }
-end, { desc = 'Format buffer' })
-
-vim.keymap.set('n', '<leader>e', function()
-  if require('mini.files').get_explorer_state() == nil then
-    require('mini.files').open()
-  else
-    require('mini.files').close()
-  end
+vim.keymap.set('n', '<leader>e', function() 
+  require('mini.files').open()
 end, { desc = 'Explorer' })
 
 vim.keymap.set('n', '<leader>f', '<cmd>Pick files<CR>', { desc = 'Files' })
 vim.keymap.set('n', '<leader>g', '<cmd>Pick grep<CR>', { desc = 'Grep' })
+
 vim.keymap.set('n', '<leader>bb', '<cmd>Pick buffers<CR>', { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>bd', '<cmd>lua MiniBufremove.delete()<CR>', { desc = 'Delete buffer' })
+vim.keymap.set('n', '<leader>bw', '<cmd>%bd|e#|bd#<CR>', { desc = 'Delete other buffers' })
+vim.keymap.set('n', '<leader>ba', '<cmd>b#<CR>', { desc = 'Alternate buffer' })
+
+vim.keymap.set('n', '<leader>lf', function()
+  require('conform').format { async = true, lsp_format = 'fallback' }
+end, { desc = 'Format buffer' })
+
 vim.keymap.set('n', '<leader>h', '<cmd>Pick help<CR>', { desc = 'Help' })
 vim.keymap.set('n', '<leader>cs', '<cmd>Pick colorschemes<CR>', { desc = 'Colorscheme' })
 vim.keymap.set('n', '<leader>sd', '<cmd>Pick diagnostic<CR>', { desc = 'Diagnostic' })
