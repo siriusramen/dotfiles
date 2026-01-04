@@ -24,13 +24,13 @@ now(function() require('mini.notify').setup() end)
 now(function() require('mini.starter').setup() end)
 
 now(function() 
-      local statusline = require 'mini.statusline'
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+  local statusline = require 'mini.statusline'
+  statusline.setup { use_icons = vim.g.have_nerd_font }
 
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
+  ---@diagnostic disable-next-line: duplicate-set-field
+  statusline.section_location = function()
+    return '%2l:%-2v'
+  end
   require('mini.statusline').setup() 
 end)
 
@@ -152,3 +152,30 @@ end)
 later(function() require('mini.pick').setup() end)
 
 later(function() require('mini.surround').setup() end)
+
+later(function()
+  -- Define language patterns to work better with 'friendly-snippets'
+  local latex_patterns = { 'latex/**/*.json', '**/latex.json' }
+  local lang_patterns = {
+    tex = latex_patterns,
+    plaintex = latex_patterns,
+    -- Recognize special injected language of markdown tree-sitter parser
+    markdown_inline = { 'markdown.json' },
+  }
+
+  local snippets = require('mini.snippets')
+  local config_path = vim.fn.stdpath('config')
+  snippets.setup({
+    snippets = {
+      -- Always load 'snippets/global.json' from config directory
+      snippets.gen_loader.from_file(config_path .. '/snippets/global.json'),
+      -- Load from 'snippets/' directory of plugins, like 'friendly-snippets'
+      snippets.gen_loader.from_lang({ lang_patterns = lang_patterns }),
+    },
+  })
+
+  -- By default snippets available at cursor are not shown as candidates in
+  -- 'mini.completion' menu. This requires a dedicated in-process LSP server
+  -- that will provide them. To have that, uncomment next line (use `gcc`).
+  MiniSnippets.start_lsp_server()
+end)

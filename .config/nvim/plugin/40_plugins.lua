@@ -46,9 +46,9 @@ now_if_args(function()
   -- the rules provided by 'nvim-lspconfig'.
   -- Use `:h vim.lsp.config()` or 'after/lsp/' directory to configure servers.
   -- Uncomment and tweak the following `vim.lsp.enable()` call to enable servers.
-  -- vim.lsp.enable({
-    -- 'lua_ls'
-  -- })
+  vim.lsp.enable({
+    'lua_ls'
+  })
 end)
 
 later(function()
@@ -64,6 +64,8 @@ later(function()
     -- formatters_by_ft = { lua = { 'stylua' } },
   })
 end)
+
+later(function() add('rafamadriz/friendly-snippets') end)
 
 now_if_args(function()
   add('mason-org/mason.nvim')
@@ -91,3 +93,4 @@ end)
 MiniDeps.later(function()
   add('christoomey/vim-tmux-navigator')
 end)
+
